@@ -154,37 +154,6 @@ generated code in then used to construct the rusoto crate, which provides the
 low-level SDK functionality. Rusoto also provides a
 <a href="https://github.com/rusoto/rusoto/tree/master/helpers" target="_blank">helpers</a> crate which
 provides higher-level abstractions for some of the AWS services (e.g. S3).</p>
-<pre><code class="lang-rust"><span class="token keyword">extern</span> <span class="token keyword">crate</span> rusoto<span class="token punctuation">;</span>
-
-<span class="token keyword">use</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>default<span class="token punctuation">:</span><span class="token punctuation">:</span>Default<span class="token punctuation">;</span>
-
-<span class="token keyword">use</span> rusoto<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>DefaultCredentialsProvider<span class="token punctuation">,</span> Region<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> rusoto<span class="token punctuation">:</span><span class="token punctuation">:</span>dynamodb<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>DynamoDbClient<span class="token punctuation">,</span> ListTablesInput<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">let</span> provider <span class="token operator">=</span> DefaultCredentialsProvider<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">let</span> client <span class="token operator">=</span> DynamoDbClient<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>provider<span class="token punctuation">,</span> Region<span class="token punctuation">:</span><span class="token punctuation">:</span>UsEast1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">let</span> list_tables_input<span class="token punctuation">:</span> ListTablesInput <span class="token operator">=</span> Default<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">match</span> client<span class="token punctuation">.</span><span class="token function">list_tables</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>list_tables_input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">Ok</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-      <span class="token keyword">match</span> output<span class="token punctuation">.</span>table_names <span class="token punctuation">{</span>
-        <span class="token function">Some</span><span class="token punctuation">(</span>table_name_list<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-          <span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">&quot;Tables in database:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-          <span class="token keyword">for</span> table_name <span class="token keyword">in</span> table_name_list <span class="token punctuation">{</span>
-            <span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">&quot;{}&quot;</span><span class="token punctuation">,</span> table_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-          <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        None <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">&quot;No tables in database!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">Err</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-      <span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">&quot;Error: {:?}&quot;</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
 
                                 
                                 </section>
@@ -220,7 +189,7 @@ provides higher-level abstractions for some of the AWS services (e.g. S3).</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Overview","level":"1.1","depth":1,"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","edit-link","prism"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-10-25T04:47:02.353Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-25T04:48:54.670Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Overview","level":"1.1","depth":1,"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","edit-link","prism"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-10-25T04:53:50.759Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-25T04:55:23.655Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
