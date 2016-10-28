@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Usage & Example · Rusoto</title>
+        <title>Debugging · Rusoto</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="supported-aws-services.html" />
     
-    
-    <link rel="prev" href="setup-hybrid.html" />
+    <link rel="prev" href="supported-aws-services.html" />
     
 
     </head>
@@ -173,7 +171,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4" data-path="usage-and-example.html">
+        <li class="chapter " data-level="1.4" data-path="usage-and-example.html">
             
                 <a href="usage-and-example.html">
             
@@ -199,7 +197,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="debugging.html">
+        <li class="chapter active" data-level="1.6" data-path="debugging.html">
             
                 <a href="debugging.html">
             
@@ -242,7 +240,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Usage & Example</a>
+        <a href="." >Debugging</a>
     </h1>
 </div>
 
@@ -257,47 +255,32 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="usage--example">Usage &amp; Example</h1>
-<p>Rusoto includes a public module for each AWS service it is compiled for, which
-contains the Rust types for that service&apos;s API. A full list of these services
-can be found on the <a href="https://rusoto.github.io/supported-aws-services.html" target="_blank">Supported AWS Services</a> page. All
-other public types are reexported to the crate root. Consult the rustdoc
-documentatation by running <code>cargo doc</code> or visiting the online
-<a href="https://rusoto.github.io/rusoto/rusoto/" target="_blank">API documentation</a> for the latest crates.io release.</p>
-<p>A simple example of using Rusoto&apos;s DynamoDB API to list the names of all the
-tables in a database:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rusoto;
+                                <h1 id="debugging">Debugging</h1>
+<p>Rusoto uses the <a href="https://github.com/rust-lang-nursery/log" target="_blank">log</a> logging facade. For tests, Rusoto uses
+<a href="https://crates.io/crates/env_logger" target="_blank"><code>env_logger</code></a>.</p>
+<p>In order to see logging output (e.g. the actual requests made to AWS),
+<code>env_logger</code> needs to be initialized:</p>
+<pre><code class="lang-rust"><span class="hljs-meta">#[test]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">list_objects_test</span></span>() {
+    <span class="hljs-keyword">let</span> _ = env_logger::init(); <span class="hljs-comment">// This initializes the `env_logger`</span>
 
-<span class="hljs-keyword">use</span> std::default::<span class="hljs-built_in">Default</span>;
-
-<span class="hljs-keyword">use</span> rusoto::{DefaultCredentialsProvider, Region};
-<span class="hljs-keyword">use</span> rusoto::dynamodb::{DynamoDbClient, ListTablesInput};
-
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
-  <span class="hljs-keyword">let</span> provider = DefaultCredentialsProvider::new().unwrap();
-  <span class="hljs-keyword">let</span> client = DynamoDbClient::new(provider, Region::UsEast1);
-  <span class="hljs-keyword">let</span> list_tables_input: ListTablesInput = <span class="hljs-built_in">Default</span>::default();
-
-  <span class="hljs-keyword">match</span> client.list_tables(&amp;list_tables_input) {
-    <span class="hljs-literal">Ok</span>(output) =&gt; {
-      <span class="hljs-keyword">match</span> output.table_names {
-        <span class="hljs-literal">Some</span>(table_name_list) =&gt; {
-          <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Tables in database:&quot;</span>);
-
-          <span class="hljs-keyword">for</span> table_name <span class="hljs-keyword">in</span> table_name_list {
-            <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, table_name);
-          }
-        }
-        <span class="hljs-literal">None</span> =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;No tables in database!&quot;</span>),
-      }
-    }
-    <span class="hljs-literal">Err</span>(error) =&gt; {
-      <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Error: {:?}&quot;</span>, error);
-    }
-  }
+    <span class="hljs-keyword">let</span> bare_s3 = S3Client::new(
+        DefaultCredentialsProvider::new().unwrap(),
+        Region::UsWest2
+    );
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> list_request = ListObjectsRequest::default();
+    list_request.bucket = <span class="hljs-string">&quot;rusototester&quot;</span>.to_string();
+    <span class="hljs-keyword">let</span> result = bare_s3.list_objects(&amp;list_request).unwrap();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;result is {:?}&quot;</span>, result);
 }
 </code></pre>
-
+<p>To see the output of logging from integration tests, the command needs to be run
+as follows:</p>
+<pre><code>RUST_LOG=debug cargo test --features all
+</code></pre><p>To get the logging output as well as the output of any <code>println!</code> statements,
+run:</p>
+<pre><code>RUST_LOG=debug cargo test --features all -- --nocapture
+</code></pre>
                                 
                                 </section>
                             
@@ -324,14 +307,10 @@ tables in a database:</p>
 
             
                 
-                <a href="setup-hybrid.html" class="navigation navigation-prev " aria-label="Previous page: Supporting Both">
+                <a href="supported-aws-services.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Supported AWS Services">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="supported-aws-services.html" class="navigation navigation-next " aria-label="Next page: Supported AWS Services">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -340,7 +319,7 @@ tables in a database:</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Usage & Example","level":"1.4","depth":1,"next":{"title":"Supported AWS Services","level":"1.5","depth":1,"path":"supported-aws-services.md","ref":"supported-aws-services.md","articles":[]},"previous":{"title":"Supporting Both","level":"1.3.3","depth":2,"path":"setup-hybrid.md","ref":"setup-hybrid.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"usage-and-example.md","mtime":"2016-10-28T17:10:01.335Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-28T17:11:03.512Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Debugging","level":"1.6","depth":1,"previous":{"title":"Supported AWS Services","level":"1.5","depth":1,"path":"supported-aws-services.md","ref":"supported-aws-services.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"debugging.md","mtime":"2016-10-28T17:10:01.331Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-28T17:11:03.512Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
