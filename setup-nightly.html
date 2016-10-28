@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Overview · Rusoto</title>
+        <title>On Nightly Compiler · Rusoto</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="help.html" />
+    <link rel="next" href="setup-hybrid.html" />
     
+    
+    <link rel="prev" href="setup-stable.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -140,7 +142,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="setup-nightly.html">
+        <li class="chapter active" data-level="1.3.2" data-path="setup-nightly.html">
             
                 <a href="setup-nightly.html">
             
@@ -227,7 +229,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Overview</a>
+        <a href="." >On Nightly Compiler</a>
     </h1>
 </div>
 
@@ -242,17 +244,25 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><span style="float:right"><a href="https://github.com/rusoto/rusoto" target="_blank"><img src="img/github.svg" alt="github"></a> <a href="https://rusoto.github.io/rusoto/rusoto/index.html" target="_blank"><img src="img/rustdoc.svg" alt="rustdoc"></a> <a href="https://crates.io/crates/rusoto" target="_blank"><img src="https://img.shields.io/crates/v/rusoto.svg?style=social" alt="Latest Version"></a></span></p>
-<h1 id="rusoto">Rusoto</h1>
-<p>Rusoto is an AWS SDK written in Rust.</p>
-<p>Rusoto consists of two main crates, <a href="https://github.com/rusoto/rusoto/" target="_blank">rusoto</a>
-and <a href="https://github.com/rusoto/rusoto/tree/master/codegen" target="_blank">codegen</a>. The codegen
-crate programmatically generates the source for the API using the AWS API
-definitions provided by the <a href="https://github.com/boto/botocore" target="_blank">botocore</a>
-project. This generated code is then used to construct the rusoto crate, which
-provides the low-level SDK functionality. Rusoto also provides a
-<a href="https://github.com/rusoto/rusoto/tree/master/helpers" target="_blank">helpers</a> crate which
-provides higher-level abstractions for some of the AWS services (e.g. S3).</p>
+                                <h1 id="on-nightly-compiler">On Nightly Compiler</h1>
+<p>If you are using a nightly version of the compiler, you can setup Rusoto to use
+<a href="https://github.com/serde-rs/serde" target="_blank">Serde&apos;s</a> <code>serde_macros</code> for the codegen.</p>
+<p><strong>Advantages of this approach</strong>: none of the disadvantages of the
+<a href="https://rusoto.github.io/setup-stable.html" target="_blank">stable approach</a>.</p>
+<p><strong>Disadvantages of this approach</strong>: depends on an unstable Rust feature, so
+requires the usage of nightly Rust.</p>
+<p>To setup Rusoto to use this approach, use the following <code>Cargo.toml</code> as a
+starting point:</p>
+<pre><code class="lang-toml"><span class="hljs-section">[package]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">&quot;my-crate&quot;</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">&quot;0.1.0&quot;</span>
+<span class="hljs-attr">authors</span> = [<span class="hljs-string">&quot;My Name &lt;my@email.com&gt;&quot;</span>]
+<span class="hljs-section">
+[dependencies.rusoto]</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">&quot;0.18&quot;</span>
+<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">features</span> = [<span class="hljs-string">&quot;s3&quot;</span>, <span class="hljs-string">&quot;sqs&quot;</span>, <span class="hljs-string">&quot;unstable&quot;</span>]
+</code></pre>
 
                                 
                                 </section>
@@ -280,8 +290,12 @@ provides higher-level abstractions for some of the AWS services (e.g. S3).</p>
 
             
                 
+                <a href="setup-stable.html" class="navigation navigation-prev " aria-label="Previous page: On Stable Compiler">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="help.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Help">
+                
+                <a href="setup-hybrid.html" class="navigation navigation-next " aria-label="Next page: Supporting Both">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -292,7 +306,7 @@ provides higher-level abstractions for some of the AWS services (e.g. S3).</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Overview","level":"1.1","depth":1,"next":{"title":"Help","level":"1.2","depth":1,"path":"help.md","ref":"help.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-10-28T16:39:20.946Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-28T16:40:18.529Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"On Nightly Compiler","level":"1.3.2","depth":2,"next":{"title":"Supporting Both","level":"1.3.3","depth":2,"path":"setup-hybrid.md","ref":"setup-hybrid.md","articles":[]},"previous":{"title":"On Stable Compiler","level":"1.3.1","depth":2,"path":"setup-stable.md","ref":"setup-stable.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"setup-nightly.md","mtime":"2016-10-28T16:39:20.946Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-28T16:40:18.529Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
