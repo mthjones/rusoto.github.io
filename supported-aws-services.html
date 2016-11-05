@@ -258,162 +258,202 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="supported-aws-services">Supported AWS Services</h1>
-<p>To use the a certain service, simply enable its cargo feature (listed below).</p>
+<p>To use a service, enable its cargo feature.  Stability levels:</p>
+<p><strong>Stable:</strong> service has not caused many bug reports.</p>
+<p><strong>Needs improvement:</strong> service has either generated many bug reports and/or is a little-used service in Rusoto. </p>
 <table>
 <thead>
 <tr>
 <th>Service</th>
 <th>Cargo feature</th>
+<th>Stability</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>All supported services</td>
 <td>all</td>
+<td>N/A</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/certificate-manager/" target="_blank">Certificate Manager</a></td>
 <td>acm</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/cloudhsm/" target="_blank">CloudHSM</a></td>
 <td>cloudhsm</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/cloudtrail/" target="_blank">CloudTrail</a></td>
 <td>cloudtrail</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html" target="_blank">CloudWatch Events</a></td>
 <td>events</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CWL_GettingStarted.html" target="_blank">CloudWatch Logs</a></td>
 <td>logs</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/codecommit/" target="_blank">CodeCommit</a></td>
 <td>codecommit</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/codedeploy/" target="_blank">CodeDeploy</a></td>
 <td>codedeploy</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/codepipeline/" target="_blank">CodePipeline</a></td>
 <td>codepipeline</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html" target="_blank">Cognito Identity</a></td>
 <td>cognito-identity</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/config/" target="_blank">Config</a></td>
 <td>config</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/datapipeline/" target="_blank">Data Pipeline</a></td>
 <td>datapipeline</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/device-farm/" target="_blank">Device Farm</a></td>
 <td>devicefarm</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/directconnect/" target="_blank">Direct Connect</a></td>
 <td>directconnect</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/directoryservice/" target="_blank">Directory Service</a></td>
 <td>ds</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/dynamodb/" target="_blank">DynamoDB</a></td>
 <td>dynamodb</td>
+<td>Stable</td>
 </tr>
 <tr>
 <td><a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html" target="_blank">DynamoDB Streams</a></td>
 <td>dynamodbstreams</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/ec2/" target="_blank">EC2</a></td>
 <td>ec2</td>
+<td>Stable</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/ecr/" target="_blank">EC2 Container Registry</a></td>
 <td>ecr</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/ecs/" target="_blank">ECS</a></td>
 <td>ecs</td>
+<td>Stable</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/elasticmapreduce/" target="_blank">Elastic MapReduce</a></td>
 <td>emr</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/elastictranscoder/" target="_blank">Elastic Transcoder</a></td>
 <td>ets</td>
+<td>Stable</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/iam/" target="_blank">IAM</a></td>
 <td>iam</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/inspector/" target="_blank">Inspector</a></td>
 <td>inspector</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/kms/" target="_blank">Key Management Service</a></td>
 <td>kms</td>
+<td>Stable</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/kinesis/" target="_blank">Kinesis</a></td>
 <td>kinesis</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/kinesis/firehose/" target="_blank">Kinesis Firehose</a></td>
 <td>firehose</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/machine-learning/" target="_blank">Machine Learning</a></td>
 <td>machinelearning</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/opsworks/" target="_blank">OpsWorks</a></td>
 <td>opsworks</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="http://docs.aws.amazon.com/Route53/latest/APIReference/actions-on-domain-registrations.html" target="_blank">Route53 Domains</a></td>
 <td>route53domains</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/s3/" target="_blank">S3</a></td>
 <td>s3</td>
+<td>Stable</td>
 </tr>
 <tr>
 <td><a href="http://docs.aws.amazon.com/ssm/latest/APIReference/Welcome.html" target="_blank">Simple Systems Manager</a></td>
 <td>ssm</td>
+<td>Needs improvement </td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/swf/" target="_blank">Simple Workflow Service</a></td>
 <td>swf</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/sqs/" target="_blank">SQS</a></td>
 <td>sqs</td>
+<td>Stable</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/storagegateway/" target="_blank">Storage Gateway</a></td>
 <td>storagegateway</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/waf/" target="_blank">Web Application Firewall</a></td>
 <td>waf</td>
+<td>Needs improvement</td>
 </tr>
 <tr>
 <td><a href="https://aws.amazon.com/workspaces/" target="_blank">WorkSpaces</a></td>
 <td>workspaces</td>
+<td>Needs improvement</td>
 </tr>
 </tbody>
 </table>
@@ -460,7 +500,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Supported AWS Services","level":"1.5","depth":1,"next":{"title":"Debugging","level":"1.6","depth":1,"path":"debugging.md","ref":"debugging.md","articles":[]},"previous":{"title":"Usage & Example","level":"1.4","depth":1,"path":"usage-and-example.md","ref":"usage-and-example.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"supported-aws-services.md","mtime":"2016-11-01T19:32:52.481Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-01T19:33:39.639Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Supported AWS Services","level":"1.5","depth":1,"next":{"title":"Debugging","level":"1.6","depth":1,"path":"debugging.md","ref":"debugging.md","articles":[]},"previous":{"title":"Usage & Example","level":"1.4","depth":1,"path":"usage-and-example.md","ref":"usage-and-example.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"supported-aws-services.md","mtime":"2016-11-05T20:47:35.257Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-05T20:48:25.075Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
