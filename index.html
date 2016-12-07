@@ -262,8 +262,13 @@
 codegen crate programmatically generates the source for the API using the AWS
 API definitions provided by the <a href="https://github.com/boto/botocore" title="Botocore" target="_blank">botocore</a> project. This generated
 code is then used to construct the rusoto crate, which provides the low-level
-SDK functionality. Rusoto also provides a <a href="https://github.com/rusoto/rusoto/tree/master/helpers" title="Rusoto helpers" target="_blank">helpers</a> crate which
-provides higher-level abstractions for some of the AWS services (e.g. S3).</p>
+SDK functionality.</p>
+<p>In addition to the two main crates, Rusoto also provides a
+<a href="https://github.com/rusoto/rusoto/tree/master/credential" title="Rusoto credential" target="_blank">credential</a> and a <a href="https://github.com/rusoto/rusoto/tree/master/helpers" title="Rusoto helpers" target="_blank">helpers</a> crate. The credential crate
+provides the necessary functionality for properly loading and handling AWS
+credentials. The helpers crate provides higher-level abstractions for some of
+the AWS services (e.g. S3), however further development of the crate has been
+put on hold until the two main crates have reached a stable state.</p>
 
                                 
                                 </section>
@@ -303,7 +308,7 @@ provides higher-level abstractions for some of the AWS services (e.g. S3).</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Overview","level":"1.1","depth":1,"next":{"title":"Help","level":"1.2","depth":1,"path":"help.md","ref":"help.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"domain":"http://rusoto.org"},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-12-07T01:26:09.145Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-07T01:26:58.662Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Overview","level":"1.1","depth":1,"next":{"title":"Help","level":"1.2","depth":1,"path":"help.md","ref":"help.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","edit-link"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"EDIT","base":"https://github.com/rusoto/rusoto.github.io/tree/source/src"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"domain":"http://rusoto.org"},"title":"Rusoto","language":"en","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-12-07T01:26:33.420Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-07T01:27:27.379Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
